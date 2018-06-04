@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <Version>0.0.1</Version>
+    <Authors>leypascua</Authors>
+    <Company>leypascua</Company>
+    <Copyright>Harley Pascua</Copyright>
+    <AssemblyVersion>0.0.0.1</AssemblyVersion>
+    <FileVersion>0.0.0.1</FileVersion>
+    <NeutralLanguage>en-PH</NeutralLanguage>
+    <PackageId>InstanceHashCode</PackageId>
+    <PackageProjectUrl>https://github.com/leypascua/InstanceHashCode</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/leypascua/InstanceHashCode</RepositoryUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/leypascua/InstanceHashCode/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>Git</RepositoryType>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A simple deep-object instance hash code generator for .NET</Description>
+  </PropertyGroup>
+
+</Project>
