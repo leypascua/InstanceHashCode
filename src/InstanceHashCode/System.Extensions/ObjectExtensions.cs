@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Text;
-using InstanceHashCode;
+﻿using InstanceHashCode;
 
 namespace System.Extensions
 {
@@ -31,6 +27,32 @@ namespace System.Extensions
         {
             var builder = GetHashCodeBuilder(instance);
             return builder.BuildMd5Hash(instance);
+        }
+
+        /// <summary>
+        /// Compares the SHA 256 hash of two object instances
+        /// </summary>
+        /// <param name="current">The current instance</param>
+        /// <param name="other">The other instance</param>
+        /// <returns></returns>
+        public static bool Sha256HashEquals<T>(this T current, T other) where T : class
+        {            
+            if (current != null && other != null)
+            {
+                return current.GetSha256HashCode() == other.GetSha256HashCode();
+            }
+
+            return current == other;
+        }
+
+        public static bool Md5HashEquals<T>(this T current, T other) where T : class
+        {
+            if (current != null && other != null)
+            {
+                return current.GetMd5HashCode() == other.GetMd5HashCode();
+            }
+
+            return current == other;
         }
 
         private static IHashCodeBuilder GetHashCodeBuilder(object instance)
