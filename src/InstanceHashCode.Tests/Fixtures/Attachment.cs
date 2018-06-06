@@ -12,5 +12,8 @@ namespace InstanceHashCode.Tests.Fixtures
 
         [HashCodeParameter]
         public string FileHash { get; set; }
+
+        [HashCodeParameter]
+        public Metadata Metadata { get; set; }
     }
 }

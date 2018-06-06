@@ -12,6 +12,8 @@ namespace InstanceHashCode.Tests
         public void WithDemarcatedPropertiesTest()
         {
             string fileHash = Guid.NewGuid().GetSha256HashCode();
+            string key = "key";
+            string value = "value";
 
             var subject = new Attachment
             {
@@ -19,11 +21,36 @@ namespace InstanceHashCode.Tests
                 CreatedAt = DateTime.UtcNow,
                 Size = 69,
 
-                // only FileHash is demarcated with [HashCodeParameter]
-                FileHash = fileHash
+                // FileHash and Metadata are demarcated with [HashCodeParameter]
+                FileHash = fileHash,
+                Metadata = new Metadata
+                {
+                    Key = key,
+                    Value = value
+                }
             };
 
-            string expected = Helpers.BuildSha256Hash(fileHash);
+            string expected = Helpers.BuildSha256Hash(fileHash, key, value);
+            string result = subject.GetSha256HashCode();
+
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void WithNullDemarcatedPropertyTest()
+        {
+            var subject = new Attachment
+            {
+                Name = "mama",
+                CreatedAt = DateTime.UtcNow,
+                Size = 69,
+
+                // FileHash and Metadata are demarcated with [HashCodeParameter]
+                FileHash = Guid.NewGuid().GetMd5HashCode(),
+                Metadata = null
+            };
+
+            string expected = Helpers.BuildSha256Hash(subject.FileHash);
             string result = subject.GetSha256HashCode();
 
             Assert.Equal(expected, result);

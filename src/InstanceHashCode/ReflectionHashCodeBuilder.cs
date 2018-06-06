@@ -8,7 +8,7 @@ namespace InstanceHashCode
     public class ReflectionHashCodeBuilder : IHashCodeBuilder
     {        
         private readonly IHashCodeBuilderFactory _builderFactory;
-        private readonly IEnumerable<PropertyInfo> TargetProperties;
+        public readonly IEnumerable<PropertyInfo> TargetProperties;
 
         public ReflectionHashCodeBuilder(IEnumerable<PropertyInfo> targetProperties, IHashCodeBuilderFactory builderFactory)
         {
@@ -46,7 +46,18 @@ namespace InstanceHashCode
                     continue;
                 }
 
-                parameterValues.Add(propValue.ToString());
+                if (Helpers.IsPrimitiveType(propertyType))
+                {
+                    parameterValues.Add(propValue.ToString());
+                }
+                else
+                {
+                    var hashCodeBuilder = builderFactory.CreateInstance(propertyType) as ReflectionHashCodeBuilder;
+                    var propValueProperties = hashCodeBuilder != null ?
+                        hashCodeBuilder.TargetProperties : HashCodeParameterAttribute.GetDemarcatedProperties(propertyType);
+
+                    parameterValues.AddRange(GetParameters(propValue, propValueProperties, builderFactory));
+                }
             }
 
             return parameterValues
