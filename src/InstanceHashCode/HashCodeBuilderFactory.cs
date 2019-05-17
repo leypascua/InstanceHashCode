@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -25,9 +26,8 @@ namespace InstanceHashCode
     }
 
     public class HashCodeBuilderFactory : IHashCodeBuilderFactory
-    {
-        private readonly object _syncLock = new object();
-        private readonly IDictionary<Type, IHashCodeBuilder> _builderCache = new Dictionary<Type, IHashCodeBuilder>();
+    {        
+        private readonly ConcurrentDictionary<Type, IHashCodeBuilder> _builderCache = new ConcurrentDictionary<Type, IHashCodeBuilder>();
 
         public readonly static IHashCodeBuilderFactory Default = new HashCodeBuilderFactory();
 
@@ -42,13 +42,7 @@ namespace InstanceHashCode
         {
             if (!_builderCache.ContainsKey(instanceType))
             {
-                lock (_syncLock)
-                {
-                    if (!_builderCache.ContainsKey(instanceType))
-                    {
-                        _builderCache.Add(instanceType, builderInstance);
-                    }
-                }
+                _builderCache.TryAdd(instanceType, builderInstance);
             }
         }
 
