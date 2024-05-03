@@ -1,21 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
-    <Version>0.0.2</Version>
-    <Authors>leypascua</Authors>
-    <Company>leypascua</Company>
-    <Copyright>Harley Pascua</Copyright>
-    <AssemblyVersion>0.0.2.0</AssemblyVersion>
-    <FileVersion>0.0.2.0</FileVersion>
-    <NeutralLanguage>en-PH</NeutralLanguage>
-    <PackageId>InstanceHashCode</PackageId>
-    <PackageProjectUrl>https://github.com/leypascua/InstanceHashCode</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/leypascua/InstanceHashCode</RepositoryUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/leypascua/InstanceHashCode/master/LICENSE</PackageLicenseUrl>
-    <RepositoryType>Git</RepositoryType>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>A simple deep-object instance hash code generator for .NET</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net48;net8.0</TargetFrameworks>
+		<Version>1.5.3</Version>
+		<Authors>leypascua</Authors>
+		<Company>leypascua</Company>
+		<Copyright>Harley Pascua</Copyright>
+		<AssemblyVersion>1.5.3.0</AssemblyVersion>
+		<FileVersion>1.5.3.0</FileVersion>
+		<NeutralLanguage>en-PH</NeutralLanguage>
+		<PackageId>InstanceHashCode</PackageId>
+		<PackageProjectUrl>https://github.com/leypascua/InstanceHashCode</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/leypascua/InstanceHashCode</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageOutputPath>../../dist</PackageOutputPath>
+		<Description>A simple deep-object instance hash code calculator for .NET</Description>
+		<Title>A simple deep object hashcode calculator for comparing equality between object instances.</Title>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	</PropertyGroup>
+
+    <ItemGroup>
+	    <None Include="..\..\readme.md">
+		    <Pack>True</Pack>
+		    <PackagePath>\</PackagePath>
+	    </None>
+	    <None Include="..\..\LICENSE.txt" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
 </Project>
